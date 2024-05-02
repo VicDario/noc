@@ -17,3 +17,9 @@ The project is divided into the following folders:
 - **presentation**:
   This layer handles user interface and interaction. It could be a web interface, command-line interface, or any other means through which users interact with the application. The presentation layer should depend on the domain layer but not vice versa.
 
+## Run
+
+### Dev
+1. Clone file .env.example to .env
+2. Fill the file with the proper variables
+3. Run ``npm run dev`` in terminal
