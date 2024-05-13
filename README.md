@@ -20,6 +20,7 @@ The project is divided into the following folders:
 ## Run
 
 ### Dev
-1. Clone file .env.example to .env
-2. Fill the file with the proper variables
-3. Run ``npm run dev`` in terminal
+1. Run ```npm install```
+2. Clone file .env.example to .env
+3. Fill the file with the proper variables
+4. Run ```npm run dev``` in terminal
