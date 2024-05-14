@@ -1,13 +1,15 @@
 import { envs } from '../config/plugins/env.plugin';
 import { CheckService } from '../domain/use-cases/checks/check.service';
 import { SendEmailLogs } from '../domain/use-cases/email/send-email-logs';
-import { FileSystemDataSource } from '../infrastucture/datasources/file-system.datasource';
+//import { FileSystemDataSource } from '../infrastucture/datasources/file-system.datasource';
+import { MongoLogDataSource } from '../infrastucture/datasources/mongo-log.datasource';
 import { LogRepositoryImpl } from '../infrastucture/repositories/log.repository';
 import { CronService } from './cron/cron.service';
 import { EmailService } from './email/email.service';
 
-const fileSystemLogRepository = new LogRepositoryImpl(
-  new FileSystemDataSource()
+const LogRepository = new LogRepositoryImpl(
+  //new FileSystemDataSource()
+  new MongoLogDataSource()
 );
 const sendEmailLogs = new SendEmailLogs(
   new EmailService({
@@ -15,7 +17,7 @@ const sendEmailLogs = new SendEmailLogs(
     mailerEmail: envs.MAILER_EMAIL,
     mailerSecretKey: envs.MAILER_SECRET_KEY,
   }),
-  fileSystemLogRepository
+  LogRepository
 );
 
 export class Server {
@@ -25,10 +27,10 @@ export class Server {
     /* sendEmailLogs
       .execute('dariocontrerasfc@gmail.com'); */
 
-    const url = 'http://localhost';
+    const url = 'https://google.com';
     CronService.createJob('*/5 * * * * *', () => {
       new CheckService(
-        fileSystemLogRepository,
+        LogRepository,
         () => console.log('success'),
         (error) => console.error(error)
       ).execute(url);
