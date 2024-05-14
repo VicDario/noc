@@ -1,3 +1,4 @@
+import { envs } from '../config/plugins/env.plugin';
 import { CheckService } from '../domain/use-cases/checks/check.service';
 import { SendEmailLogs } from '../domain/use-cases/email/send-email-logs';
 import { FileSystemDataSource } from '../infrastucture/datasources/file-system.datasource';
@@ -9,7 +10,11 @@ const fileSystemLogRepository = new LogRepositoryImpl(
   new FileSystemDataSource()
 );
 const sendEmailLogs = new SendEmailLogs(
-  new EmailService(),
+  new EmailService({
+    service: envs.MAILER_SERVICE,
+    mailerEmail: envs.MAILER_EMAIL,
+    mailerSecretKey: envs.MAILER_SECRET_KEY,
+  }),
   fileSystemLogRepository
 );
 

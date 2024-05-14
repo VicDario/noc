@@ -1,5 +1,4 @@
-import { createTransport } from 'nodemailer';
-import { envs } from '../../config/plugins/env.plugin';
+import { createTransport, Transporter } from 'nodemailer';
 
 interface SendMailOptions {
   to: string | string[];
@@ -13,16 +12,25 @@ interface Attachment {
   path: string;
 }
 
-export class EmailService {
-  private transporter = createTransport({
-    service: envs.MAILER_SERVICE,
-    auth: {
-      user: envs.MAILER_EMAIL,
-      pass: envs.MAILER_SECRET_KEY,
-    },
-  });
+interface MailerOptions {
+  service: string;
+  mailerEmail: string;
+  mailerSecretKey: string;
+}
 
-  constructor() {}
+export class EmailService {
+  private transporter: Transporter;
+
+  constructor(options: MailerOptions) {
+    const { service, mailerEmail, mailerSecretKey } = options
+    this.transporter = createTransport({
+      service: service,
+      auth: {
+        user: mailerEmail,
+        pass: mailerSecretKey,
+      },
+    });
+  }
 
   async sendEmail(options: SendMailOptions): Promise<boolean> {
     const { to, subject, htmlBody, attachments = [] } = options;
