@@ -23,4 +23,5 @@ The project is divided into the following folders:
 1. Run ```npm install```
 2. Clone file .env.example to .env
 3. Fill the file with the proper variables
-4. Run ```npm run dev``` in terminal
+4. Run ```docker compose up -d``` to create the necessary services
+5. Run ```npm run dev``` in terminal
