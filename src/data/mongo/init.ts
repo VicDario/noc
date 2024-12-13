@@ -9,7 +9,10 @@ export class MongoDatabase {
   static async connect(options: ConnectionOptions) {
     const { mongoUrl, dbName } = options;
     try {
-      await mongoose.connect(mongoUrl, { dbName })
-    } catch (error) {}
+      await mongoose.connect(mongoUrl, { dbName });
+      return true;
+    } catch (error) {
+      throw error;
+    }
   }
 }
