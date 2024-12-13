@@ -105,7 +105,7 @@ const config: Config = {
   // preset: undefined,
   preset: 'ts-jest',
 
-  // Opcional - The paths to modules that run some
+  // Optional - The paths to modules that run some
   // code to configure or set up the testing
   // environment before each test
   // setupFiles: ['dotenv/config'],
