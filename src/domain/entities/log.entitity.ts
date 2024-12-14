@@ -27,7 +27,7 @@ export class LogEntity {
 
   // Factory function
   static fromJson(json: string): LogEntity {
-    const { message, level, createdAt } = JSON.parse(json);
+    const { message, level, origin, createdAt } = JSON.parse(json);
 
     const log = new LogEntity({ message, level, origin, createdAt: new Date(createdAt) });
 
