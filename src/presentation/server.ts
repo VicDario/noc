@@ -1,7 +1,7 @@
 import { CheckMultipleService } from '../domain/use-cases/checks/check-multiple.service';
 import { FileSystemDataSource } from '../infrastucture/datasources/file-system.datasource';
 import { MongoLogDataSource } from '../infrastucture/datasources/mongo-log.datasource';
-import { PostgresLogDataSource } from '../data/postgres/init';
+import { PostgresLogDataSource } from '../infrastucture/datasources/postgres-log.datasource';
 import { LogRepositoryImpl } from '../infrastucture/repositories/log.repository';
 import { CronService } from './cron/cron.service';
 
