@@ -112,7 +112,7 @@ describe('file-system.datasource.ts', () => {
 
   test('should not throw an error if log file is empty', async () => {
     const logDataSource = new FileSystemDataSource();
-    const logs = logDataSource.getLogs(LogSeverityLevel.low);
+    const logs = await logDataSource.getLogs(LogSeverityLevel.low);
 
     expect(logs).toEqual([]);
   });
