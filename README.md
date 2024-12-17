@@ -18,10 +18,16 @@ The project is divided into the following folders:
   This layer handles user interface and interaction. It could be a web interface, command-line interface, or any other means through which users interact with the application. The presentation layer should depend on the domain layer but not vice versa.
 
 ## Run
+```pnpm start```
 
 ### Dev
-1. Run ```npm install```
+1. Run ```pnpm install```
 2. Clone file .env.example to .env
 3. Fill the file with the proper variables
 4. Run ```docker compose up -d``` to create the necessary services
-5. Run ```npm run dev``` in terminal
+5. Run ```pnpm run dev``` in terminal
+
+
+## Testing
+1. Run ```pnpm run docker:test``` to create the necessary services
+2. Run ```pnpm run test``` in terminal
