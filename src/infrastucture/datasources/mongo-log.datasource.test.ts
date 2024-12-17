@@ -1,7 +1,10 @@
 import { envs } from '../../config/plugins/env.plugin';
 import { LogModel, MongoDatabase } from '../../data/mongo';
 import mongoose from 'mongoose';
-import { LogEntity, LogSeverityLevel } from '../../domain/entities/log.entitity';
+import {
+  LogEntity,
+  LogSeverityLevel,
+} from '../../domain/entities/log.entitity';
 import { MongoLogDataSource } from './mongo-log.datasource';
 
 describe('mongo-log.datasource.ts', () => {
@@ -24,17 +27,20 @@ describe('mongo-log.datasource.ts', () => {
   const log = new LogEntity({
     message: 'test-message',
     origin: 'mongo-log.datasource.test.ts',
-    level: LogSeverityLevel.low
+    level: LogSeverityLevel.low,
   });
 
   test('should create log', async () => {
     const logSpy = jest.spyOn(console, 'log');
-    
+
     await logDataSource.saveLog(log);
 
     expect(logSpy).toHaveBeenCalled();
-    expect(logSpy).toHaveBeenCalledWith("Mongo Log Created", expect.any(String));
-  })
+    expect(logSpy).toHaveBeenCalledWith(
+      'Mongo Log Created',
+      expect.any(String)
+    );
+  });
 
   test('should get logs', async () => {
     await logDataSource.saveLog(log);
@@ -44,5 +50,5 @@ describe('mongo-log.datasource.ts', () => {
 
     expect(logs.length).toBe(2);
     logs.forEach((log) => expect(log.level).toBe(LogSeverityLevel.low));
-  })
+  });
 });
