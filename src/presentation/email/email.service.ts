@@ -12,7 +12,7 @@ export interface Attachment {
   path: string;
 }
 
-interface MailerOptions {
+export interface MailerOptions {
   service: string;
   mailerEmail: string;
   mailerSecretKey: string;
